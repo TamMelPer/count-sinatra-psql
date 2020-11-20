@@ -12,3 +12,13 @@ feature "increment the count" do
     expect(page).to have_content 1
   end
 end
+
+feature "decreases the count" do
+  scenario "click the Decrement button and see the number decrease" do
+    visit("/")
+    expect(page).to have_content 0
+    click_button "Decrement"
+    expect(page).to have_button('Decrement')
+    expect(page).to have_content -1
+  end
+end
