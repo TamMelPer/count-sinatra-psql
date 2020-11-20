@@ -89,5 +89,9 @@ def time
 end
 ```
 In psql:
+
 ALM shared this [link](http://pointbeing.net/weblog/2008/03/mysql-versus-postgresql-adding-a-last-modified-column-to-a-table.html) and talked us through it. Thanks ALM!
 ![](psql.png)
+
+# Some CSS
+![](counter.png)
