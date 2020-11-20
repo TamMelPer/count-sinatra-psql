@@ -73,3 +73,21 @@ def decrement
   result = DatabaseConnection.query("UPDATE counter SET count = '#{read_count - 1}' WHERE id=1;")
 end
 ```
+
+# Added the time that the count was last updated
+Note: Still working on the unit and feature test for this.
+
+In view:
+```ruby
+  <div id="time">Counter last updated:<%= @counter.time %></div>
+```
+In model:
+```ruby
+def time
+  newtime = DatabaseConnection.query("SELECT * FROM counter WHERE id=1;")
+  newtime[0]['lastmodified'].to_s
+end
+```
+In psql:
+ALM shared this [link](http://pointbeing.net/weblog/2008/03/mysql-versus-postgresql-adding-a-last-modified-column-to-a-table.html) and talked us through it. Thanks ALM!
+![](psql.png)
