@@ -28,3 +28,48 @@ This is a counter web app built in Ruby using Sinatra and Capybara. This app use
 * What part of the code runs when we click the "Increment" button?
 * Can you add a "Decrement" button which decreases the count by 1 each time it is pressed?
 * Can you update the app to display the time that the count was last updated? This value should be stored in the database so that it will be accurately displayed even if the server is restarted.
+
+# Added a decrement button
+
+In feature and unit spec:
+```ruby
+describe '#decrement' do
+it 'decreases the count by 1' do
+  counter = Counter.new
+  counter.decrement
+  expect(counter.count).to eq -1
+end
+end
+
+feature "decreases the count" do
+  scenario "click the Decrement button and see the number decrease" do
+    visit("/")
+    expect(page).to have_content 0
+    click_button "Decrement"
+    expect(page).to have_button('Decrement')
+    expect(page).to have_content -1
+  end
+end
+
+```
+
+In controller:
+```ruby
+post '/decrement' do
+  @counter.decrement
+  redirect '/'
+end
+```
+In view:
+```ruby
+<form action="/decrement" method="post">
+  <input type="submit" value="Decrement">
+</form>
+```
+In model:
+```ruby
+def decrement
+  read_count = count
+  result = DatabaseConnection.query("UPDATE counter SET count = '#{read_count - 1}' WHERE id=1;")
+end
+```
