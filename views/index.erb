@@ -1,18 +1,39 @@
 <!DOCTYPE html>
-
+<link rel="stylesheet" href="https://unpkg.com/marx-css/css/marx.min.css">
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <style>
+body {
+  background-color: lightblue;
+}
+.monospace {
+  font-family: "Lucida Console", Courier, monospace;
+}
+.center {
+  padding: 70px 0;
+  border: 3px solid SlateBlue;
+  text-align: center;
+}
+
+</style>
     <title>Count</title>
   </head>
   <body>
+    <div class="center">
+    <p class="monospace">My Counter App</p>
     <form action="/increment" method="post">
       <input type="submit" value="Increment">
     </form>
+    <br>
     <form action="/decrement" method="post">
       <input type="submit" value="Decrement">
     </form>
+    <br>
     <div id="count"><%= @counter.count %></div>
-    <div id="time">Counter last updated:<%= @counter.time %></div>
+
+    <br>
+    <div id="time"><p class="monospace">Counter last updated:<%= @counter.time %></p></div>
+    </div>
   </body>
 </html>
